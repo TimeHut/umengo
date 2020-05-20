@@ -14,6 +14,17 @@ module Umengo
       push(@plantform, opts)
     end
 
+    #消息格式需要验证
+    def groupcast(opts)
+      basic_data = {
+        type: 'groupcast',
+        production_mode: opts[:production_mode] || "false"
+      }
+      opts[:data] = opts.fetch(:data, {}).merge(basic_data)
+
+      push(@plantform, opts)
+    end
+
     def unicast(device_tokens, opts)
       basic_data = {
         device_tokens: device_tokens,
