@@ -14,6 +14,18 @@ module Umengo
       push(@plantform, opts)
     end
 
+    #customizedcast
+    # 自定义消息推送
+    def customizedcast(opts)
+      basic_data = {
+        type: 'customizedcast',
+        production_mode: opts[:production_mode] || "false"
+      }
+      opts[:data] = opts.fetch(:data, {}).merge(basic_data)
+
+      push(@plantform, opts)
+    end
+
     #消息格式需要验证
     def groupcast(opts)
       basic_data = {
